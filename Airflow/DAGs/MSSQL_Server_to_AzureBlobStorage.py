@@ -1,7 +1,3 @@
-import sys
-import os
-sys.path.append(os.path.join(os.path.abspath('.'), 'elt_scripts'))
-
 from airflow import DAG
 from datetime import datetime, timedelta
 from airflow.operators.python import PythonOperator
@@ -37,7 +33,7 @@ def get_data_from_sql():
     return df
 
 def az_upload():
-    AZURE_CONN_ID = "adls-blob" # The connectino you've created in Airflow Connections
+    AZURE_CONN_ID = "adls-blob" # The connection you've created in Airflow Connections
 
     az_hook = WasbHook(wasb_conn_id=AZURE_CONN_ID)
     logging.info("Exporting SQL data to Azure Blob Storage")
